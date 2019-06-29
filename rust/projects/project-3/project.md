@@ -56,7 +56,7 @@ The `kvs-server` executable supports the following command line arguments:
 
 The `kvs-client` executable supports the following command line arguments:
 
-- `kvs-client set <KEY> <VALUE> [--addr IP-PORT]`
+- `kvs-client  [--addr IP-PORT] set <KEY> <VALUE>`
 
   Set the value of a string key to a string.
 
@@ -67,7 +67,7 @@ The `kvs-client` executable supports the following command line arguments:
   Print an error and return a non-zero exit code on server error,
   or if `IP-PORT` does not parse as an address.
 
-- `kvs-client get <KEY> [--addr IP-PORT]`
+- `kvs-client [--addr IP-PORT] get <KEY>`
 
   Get the string value of a given string key.
 
@@ -78,7 +78,7 @@ The `kvs-client` executable supports the following command line arguments:
   Print an error and return a non-zero exit code on server error,
   or if `IP-PORT` does not parse as an address.
 
-- `kvs-client rm <KEY> [--addr IP-PORT]`
+- `kvs-client [--addr IP-PORT] rm <KEY>`
 
   Remove a given string key.
 
@@ -233,7 +233,7 @@ commands one at a time. In the future we will re-visit this decision multiple
 times on our journey toward an asynchronous, multi-threaded, and
 high-performance database.
 
-Thank about your manual testing workflow. Now that there are two executables to
+Think about your manual testing workflow. Now that there are two executables to
 deal with, you'll need a way to run them both at the same time. If you are like
 many, you will use two terminals, running `cargo run --bin kvs-client` in
 one, where it runs until you press CTRL-D, and `cargo run --bin kvs-client`
@@ -261,7 +261,7 @@ will be serializing and streaming commands with the `Read` and `Write` traits.
 You are going to design a network protocol. There are a number of ways to get
 data in and out of a TCP stream, and a number of decisions to make. Is it a
 text-based protocol, binary? How is the data translated from its format in
-memory to its format byte-stream format? Is there a single request per
+memory to its byte-stream format? Is there a single request per
 connection, or many?
 
 Keep in mind that it must support successful results and errors, and there are
